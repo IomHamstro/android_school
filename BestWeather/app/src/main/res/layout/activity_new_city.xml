@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/toolbar" />
+
+    <EditText
+        android:id="@+id/editText_city"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:hint="@string/new_city_title"
+        android:layout_width="fill_parent">
+    </EditText>
+
+    <Button
+        android:id="@+id/btn_sendCity"
+        android:layout_height="wrap_content"
+        android:text="@string/new_city_button_title"
+        android:onClick="sendNewCity"
+        android:layout_width="fill_parent">
+    </Button>
+</LinearLayout>

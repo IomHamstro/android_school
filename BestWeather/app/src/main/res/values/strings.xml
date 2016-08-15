@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Погода</string>
+
+    <string name="weather_temperature">%d°C</string>
+
+    <string name="new_city_title">Название города</string>
+    <string name="new_city_button_title">Добавить</string>
+    <string name="new_city_toolbar_title">Новый город</string>
+    <string name="new_city_wrong_city_name_message">К сожалению, мы не можем найти информации по данному городу. Попробуйте запросить другой город.</string>
+    <string name="new_city_already_exist_message">Выбраный вами город уже добавлен в список</string>
+    <string name="new_city_successful_added_message">Город успешно добавлен</string>
+
+
+    <string name="weather_details_temperature">Температура</string>
+    <string name="weather_details_temperature_max">Максимальная: %d°C</string>
+    <string name="weather_details_temperature_min">Минимальная: %d°C </string>
+    <string name="weather_details_temperature_average">Средняя: %d°C </string>
+
+    <string name="weather_details_pressure_title">Давление</string>
+    <string name="weather_details_pressure">%d гПа</string>
+
+    <string name="weather_details_wind_title">Ветер</string>
+    <string name="weather_details_wind_speed">Скорость: %.2f м/с</string>
+
+
+</resources>
