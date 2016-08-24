@@ -37,8 +37,7 @@ public class NewCityActivity extends BaseActivity {
     }
 
     public void sendNewCity(View view) {
-        EditText nameField = (EditText) findViewById(R.id.editText_city);
-        String cityName = nameField != null ? nameField.getText().toString() : "";
+        String cityName = editTextCity != null ? editTextCity.getText().toString() : "";
 
         if (load(cityName)) {
             Intent intent = new Intent(NewCityActivity.this, MainActivity.class);
@@ -59,30 +58,19 @@ public class NewCityActivity extends BaseActivity {
                         Toast.makeText(NewCityActivity.this,
                                 R.string.new_city_wrong_city_name_message, Toast.LENGTH_LONG).show();
                     } else {
-                        realm.executeTransactionAsync(new Realm.Transaction() {
-                            @Override
-                            public void execute(Realm bgRealm) {
-                                bgRealm.copyToRealm(response.body());
-                            }
-                        }, new Realm.Transaction.OnSuccess() {
-                            @Override
-                            public void onSuccess() {
-                                // Transaction was a success.
-                                Intent returnIntent = new Intent();
-                                setResult(Activity.RESULT_OK, returnIntent);
-                                hideProgressBar();
-                                Toast.makeText(NewCityActivity.this,
-                                        R.string.new_city_successful_added_message, Toast.LENGTH_LONG).show();
-                                finish();
-                            }
-                        }, new Realm.Transaction.OnError() {
-                            @Override
-                            public void onError(Throwable error) {
-                                // Transaction failed and was automatically canceled.
-                                hideProgressBar();
-                                Toast.makeText(NewCityActivity.this,
-                                        R.string.new_city_already_exist_message, Toast.LENGTH_LONG).show();
-                            }
+                        realm.executeTransactionAsync(bgRealm -> bgRealm.copyToRealm(response.body()), () -> {
+                            // Transaction was a success.
+                            Intent returnIntent = new Intent();
+                            setResult(Activity.RESULT_OK, returnIntent);
+                            hideProgressBar();
+                            Toast.makeText(NewCityActivity.this,
+                                    R.string.new_city_successful_added_message, Toast.LENGTH_LONG).show();
+                            finish();
+                        }, error -> {
+                            // Transaction failed and was automatically canceled.
+                            hideProgressBar();
+                            Toast.makeText(NewCityActivity.this,
+                                    R.string.new_city_already_exist_message, Toast.LENGTH_LONG).show();
                         });
                     }
                 }

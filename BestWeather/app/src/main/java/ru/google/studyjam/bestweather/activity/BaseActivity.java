@@ -19,7 +19,6 @@ import ru.google.studyjam.bestweather.network.SessionRestManager;
 
 public class BaseActivity extends AppCompatActivity {
 
-    private MaterialDialog dialog;
     private CatLoadingView catLoadingView;
     protected Realm realm;
 
@@ -31,15 +30,6 @@ public class BaseActivity extends AppCompatActivity {
 
 
     protected void showProgressBar() {
-//        if (dialog == null) {
-//            dialog = new MaterialDialog.Builder(BaseActivity.this)
-//                    .content("Загрузка...")
-//                    .progress(true, 0)
-//                    .cancelable(false)
-//                    .show();
-//        } else {
-//            dialog.show();
-//        }
         if (catLoadingView == null) {
             catLoadingView = new CatLoadingView();
             catLoadingView.show(getSupportFragmentManager(), "");
@@ -54,17 +44,7 @@ public class BaseActivity extends AppCompatActivity {
         Toolbar toolbar = ButterKnife.findById(BaseActivity.this, R.id.toolbar);
         toolbar.setTitle(title);
         setSupportActionBar(toolbar);
-        if (setDisplayHomeAsUpEnabled) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
-    }
-
-    protected void setupToolbar(@StringRes int title) {
-        setupToolbar(title, true);
-    }
-
-    protected void setupToolbar(@NonNull CharSequence title) {
-        setupToolbar(title, true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(setDisplayHomeAsUpEnabled);
     }
 
     protected void onBackButtonPressed() {
@@ -82,8 +62,6 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     protected void hideProgressBar() {
-//        if (dialog != null)
-//            dialog.dismiss();
         if (catLoadingView != null) catLoadingView.dismiss();
     }
 

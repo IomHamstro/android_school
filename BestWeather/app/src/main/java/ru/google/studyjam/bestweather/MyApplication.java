@@ -20,13 +20,5 @@ public class MyApplication extends Application {
                         .build());
         RealmConfiguration realmConfiguration = new RealmConfiguration.Builder(this).deleteRealmIfMigrationNeeded().build();
         Realm.setDefaultConfiguration(realmConfiguration);
-
-//        HelperFactory.setHelper(getApplicationContext());
-    }
-
-    @Override
-    public void onTerminate() {
-//        HelperFactory.releaseHelper();
-        super.onTerminate();
     }
 }

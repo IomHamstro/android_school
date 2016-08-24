@@ -58,13 +58,10 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHold
                     .into(holder.weatherImage);
         }
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, WeatherDetailsInfoActivity.class);
-                intent.putExtra(WeatherDetailsInfoActivity.CITY_ID, cityInfo.getCityId());
-                context.startActivity(intent);
-            }
+        holder.itemView.setOnClickListener(view -> {
+            Intent intent = new Intent(context, WeatherDetailsInfoActivity.class);
+            intent.putExtra(WeatherDetailsInfoActivity.CITY_ID, cityInfo.getCityId());
+            context.startActivity(intent);
         });
     }
 

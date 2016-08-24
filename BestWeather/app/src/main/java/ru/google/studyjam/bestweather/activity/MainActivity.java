@@ -123,13 +123,6 @@ public class MainActivity extends BaseActivity {
         return builder.toString();
     }
 
-    public void openDetailInfo(View view) {
-        TextView cityName = (TextView) view.findViewById(R.id.city_name);
-        Intent intent = new Intent(MainActivity.this, WeatherDetailsInfoActivity.class);
-        intent.putExtra("cityName", cityName.getText());
-        startActivity(intent);
-    }
-
     public void openAddingNewCityActivity() {
         Intent intent = new Intent(MainActivity.this, NewCityActivity.class);
         startActivityForResult(intent, ADD_NEW_CITY);

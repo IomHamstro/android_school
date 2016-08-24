@@ -32,18 +32,15 @@ public class SessionRestManager {
 
     private OkHttpClient setupHttpClient() {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-        httpClient.addInterceptor(new Interceptor() {
-            @Override
-            public Response intercept(Chain chain) throws IOException {
-                Request original = chain.request();
+        httpClient.addInterceptor(chain -> {
+            Request original = chain.request();
 
-                Request request = original.newBuilder()
-                        .header("Accept", "application/json")
-                        .method(original.method(), original.body())
-                        .build();
+            Request request = original.newBuilder()
+                    .header("Accept", "application/json")
+                    .method(original.method(), original.body())
+                    .build();
 
-                return chain.proceed(request);
-            }
+            return chain.proceed(request);
         });
 
         // Задаём "уровень" логирования запросов
